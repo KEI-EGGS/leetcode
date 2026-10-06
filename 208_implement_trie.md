@@ -119,9 +119,9 @@ class Trie(object):
 
     def search(self, word):
         node = self.root
-        for c in word:
             node = node.children.get(c)
             if node is None:
+        for c in word:
                 return False
         return node.is_end
 
