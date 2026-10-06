@@ -99,10 +99,10 @@ Runtime: 99 ms → 68 ms（31 ms 減）
 最終的に落ち着いたのは Step 2 と同じコード。
 
 ```python
-class Node(object):
+class Node:
     def __init__(self):
         self.children = {}
-        self.isEnd = False
+        self.is_end = False
 
 
 class Trie(object):
@@ -110,26 +110,26 @@ class Trie(object):
         self.root = Node()
 
     def insert(self, word):
-        cur = self.root
+        node = self.root
         for c in word:
-            if c not in cur.children:
-                cur.children[c] = Node()
-            cur = cur.children[c]
-        cur.isEnd = True
+            if c not in node.children:
+                node.children[c] = Node()
+            node = node.children[c]
+        node.is_end = True
 
     def search(self, word):
-        cur = self.root
+        node = self.root
         for c in word:
-            cur = cur.children.get(c)
-            if cur is None:
+            node = node.children.get(c)
+            if node is None:
                 return False
-        return cur.isEnd
+        return node.is_end
 
     def startsWith(self, prefix):
-        cur = self.root
+        node = self.root
         for c in prefix:
-            cur = cur.children.get(c)
-            if cur is None:
+            node = node.children.get(c)
+            if node is None:
                 return False
         return True
 ```
